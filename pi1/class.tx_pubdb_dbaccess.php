@@ -218,8 +218,13 @@ class pubdbAccess {
 				$parentids[] = $pub['parent_pubid'];
 		}
 
-		$idString = implode(',', $parentids);
-		$wherecl = 'hidden="0" AND deleted="0" AND uid IN ('.$idString.')';
+
+		$wherecl = 'hidden="0" AND deleted="0"';
+		if (count($parentids) > 0) {
+			$idString = implode(',', $parentids);
+			$wherecl .= ' AND uid IN ('.$idString.')';
+		}
+
 		$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*','tx_pubdb_data',$wherecl);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
 			$publications['parents'][$row['uid']] = $row;
