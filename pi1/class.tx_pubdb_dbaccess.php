@@ -107,7 +107,8 @@ class pubdbAccess {
 			//debug($result);
 
 			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
-				if (!key_exists($publications) &&  (( $category!=='0' && $this->categorymatch($pub2cat, $row['uid'], $catetory)) || $category === '0')) {
+				// TODO check functionality
+				if (!array_key_exists($row['uid'], $publications['pubs']) &&  (( $category!=='0' && $this->categorymatch($pub2cat, $row['uid'], $catetory)) || $category === '0')) {
 					$publications['pubs'][$row['uid']] = $row;
 					$pubids[] = $row['uid'];
 				}
@@ -214,8 +215,9 @@ class pubdbAccess {
 	function fetchAndAddParents($publications) {
 		$parentids = array();
 		foreach ($publications['pubs'] as $pub) {
-			if ($pub['parent_pubid'] != 0 && !key_exists($pub['parent_pubid']))
+			if ($pub['parent_pubid'] !== 0 && !array_key_exists($pub['parent_pubid'], $parentids)) {
 				$parentids[] = $pub['parent_pubid'];
+			}
 		}
 
 
@@ -234,7 +236,7 @@ class pubdbAccess {
 		$contributors = $this->fetchContributorsByPubId(implode(',',$pubids));
 
 		foreach ($contributors as $pubid=>$value) {
-			if (!key_exists($pubid, $publications['contributors'])) {
+			if (!array_key_exists($pubid, $publications['contributors'])) {
 				$publications['contributors'][$pubid] = $value;
 			}
 		}

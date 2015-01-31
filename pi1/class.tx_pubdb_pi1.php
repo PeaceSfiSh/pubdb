@@ -801,7 +801,7 @@ class tx_pubdb_pi1 extends tslib_pibase {
 
 		if ($p_file!='' || $p_order!='') $p_order.='<br />';
 
-		if (isset($publications) && key_exists($pub['parent_pubid'], $publications['parents'])) {
+		if (isset($publications) && array_key_exists($pub['parent_pubid'], $publications['parents'])) {
 			$parent = $publications['parents'][$pub['parent_pubid']];
 			$p_parent_title = $parent['title'];
 			$p_parent_abbrev_title = $parent['abbrev_title'];
