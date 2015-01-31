@@ -147,13 +147,13 @@ if ($typo3Version >= 6000000) {
 		'Publication database FE plugin');
 	$pluginSignature = str_replace('_', '', $_EXTKEY) . '_pi1';
 	$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/flexform_ds.xml');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_ds.xml');
  } else {
 	//flexform feld einblenden
 	$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1']='pi_flexform';
 	
 	//xml datei laden
-	t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1', 'FILE:EXT:' . $_EXTKEY . '/flexform_ds.xml');
+	t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1', 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_ds.xml');
  }
 
 t3lib_extMgm::addPlugin(Array('LLL:EXT:pubdb/locallang_db.xml:tt_content.list_type_pi1', $_EXTKEY . '_pi1'), 'list_type');
