@@ -759,7 +759,9 @@ class tx_pubdb_pi1 extends tslib_pibase {
 	private function renderListItem($pub, $params, $publications=NULL, $singlepageId) {
 
 		if ($pub['abstract'] !== '' || tx_pubdb_utils::typeHasChildren($pub['pubtype']) || $pub['file'] !=='' || $pub['openFile'] !== '') {
-			$p_more = $this->pi_linkToPage($this->pi_getLL('more'), $singlepageId, '', $params);
+			if ($singlepageId !== '') {
+				$p_more = $this->pi_linkToPage($this->pi_getLL('more'), $singlepageId, '', $params);
+			}
 		}
 
 		if (isset($parent['year']) && $parent['year'] > 0) $p_year= $parent['year'];
