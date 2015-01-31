@@ -31,8 +31,8 @@ class pubdbAccess {
 	function __construct() {
 
 		// load the publication to category mapping
-		$this->pub2cat = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid_local as pubid,uid_foreign as catid','tx_pubdb_data_category_mm');
-		$this->cat2group = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid_local as catid,uid_foreign as groupid','tx_pubdb_category_fegroups_mm');
+		$this->pub2cat = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid_local as pubid,uid_foreign as catid','tx_pubdb_data_category_mm', '');
+		$this->cat2group = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid_local as catid,uid_foreign as groupid','tx_pubdb_category_fegroups_mm', '');
 		//debug($this->pub2cat,'pub2cat');
 		//debug($this->cat2group,'cat2group');
 	}
