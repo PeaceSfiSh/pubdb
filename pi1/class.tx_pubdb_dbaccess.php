@@ -40,20 +40,22 @@ class pubdbAccess {
 	/**
 	 * Get an array of contributors for a comma separated list of publication ids
 	 * @param String $pubids
+	 * @return array
 	 */
-
 	function fetchContributorsByPubId($pubids) {
+		$contributors = array();
+
 		// fetch contributors
 		$contributorsResult =  $GLOBALS['TYPO3_DB']->exec_SELECTquery('c.*,r.pubid,r.contributorid,r.role,r.contributorsort,r.pubsort',
 				'tx_pubdb_contributors c JOIN tx_pubdb_pub_contributors r ON c.uid = r.contributorid ',
 				'r.pubid IN ('.$pubids.') AND r.deleted=0 AND c.deleted=0',
 				'','r.pubid,r.pubsort');
 		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($contributorsResult))  {
-			$cont[$row['pubid']][] = $row;
+			$contributors[$row['pubid']][] = $row;
 
 		}
-		//	t3lib_utility_Debug::debug($cont,'contributors');
-		return $cont;
+		//	t3lib_utility_Debug::debug($contributors,'contributors');
+		return $contributors;
 	}
 
 	/**
