@@ -28,7 +28,6 @@
  */
 
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
 //require_once('t3lib/class.t3lib_div.php');
 
 class tx_pubdb_toxml {
