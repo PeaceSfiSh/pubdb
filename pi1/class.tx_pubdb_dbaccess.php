@@ -110,7 +110,7 @@ class pubdbAccess {
 
 			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
 				// TODO check functionality
-				if (!array_key_exists($row['uid'], $publications['pubs']) &&  (( $category!=='0' && $this->categorymatch($pub2cat, $row['uid'], $catetory)) || $category === '0')) {
+				if (!array_key_exists($row['uid'], $publications['pubs']) &&  (( $category!=='0' && $this->categorymatch($pub2cat, $row['uid'], $category)) || $category === '0')) {
 					$publications['pubs'][$row['uid']] = $row;
 					$pubids[] = $row['uid'];
 				}
