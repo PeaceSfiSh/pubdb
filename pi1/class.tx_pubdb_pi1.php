@@ -35,7 +35,7 @@ require_once(PATH_typo3conf.'ext/pubdb/pi1/class.tx_pubdb_dbaccess.php');
 class tx_pubdb_pi1 extends tslib_pibase {
 	public $scriptRelPath = 'pi1/class.tx_pubdb_pi1.php';	// Path to this script relative to the extension dir.
 	public $extKey = 'pubdb';	// The extension key.
-	public $pi_checkCHash = TRUE;
+	public $pi_checkCHash = false;
 	public $prefixId = 'tx_pubdb_pi1'; // Same as class name
 	
 	private $ffdata;
